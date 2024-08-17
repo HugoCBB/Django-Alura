@@ -51,7 +51,7 @@ class CadastroForm(forms.Form):
         )
     )
 
-    senha = forms.CharField(
+    senha1 = forms.CharField(
         max_length=70,
         label="Senha",
         required=True,
@@ -62,7 +62,7 @@ class CadastroForm(forms.Form):
             }
         )
     )
-    confimacao_senha = forms.CharField(
+    senha2 = forms.CharField(
         max_length=70,
         label="Confirme sua senha",
         required=True,
