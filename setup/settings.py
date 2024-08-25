@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+from django.contrib.messages import constants as messages
 from pathlib import Path
 from dotenv import load_dotenv
 import os
@@ -135,4 +135,11 @@ MEDIA_URL = "/media/"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+# Messages
+MESSAGE_TAGS = {
+    messages.ERROR:'danger',
+    messages.SUCCESS:'primary'
+}
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+

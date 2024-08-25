@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from . form import FotografiaForm
 from . models import Fotografia
 
@@ -6,12 +7,20 @@ from . models import Fotografia
 # Order_by: ordena o itens criados como sendo o primeiro o mais novo a ser adicionado
 # Filter: filtra por cada item publicado
 def home(request):
+    if not request.user.is_authenticated:
+        messages.error(request,'Usuario não logado')
+        return redirect('login')
+
     fotografia = Fotografia.objects.order_by('data').filter(publicada=True)
     return render(request,'galeria/home.html',{"cards":fotografia})
 
 def imagem(request, fotografia_id):
+    if not request.user.is_authenticated:
+        messages.error(request,'Usuario não logado')
+        return redirect('login')
+    
     fotografia = get_object_or_404(Fotografia, pk=fotografia_id)
-    return render(request, 'galeria/imagem.html', {"foto":fotografia})
+    return render(request, 'galeria/imagem.html', {"fotografia":fotografia})
 
 # Viwer responsavel por criar um formulario
 def FotoFR(request):

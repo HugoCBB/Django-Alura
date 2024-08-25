@@ -27,7 +27,7 @@ class LoginForm(forms.Form):
 
 
 class CadastroForm(forms.Form):
-    nome = forms.CharField(
+    nome_cadastro = forms.CharField(
         max_length=100,
         label="Nome",
         required=True,
@@ -73,4 +73,27 @@ class CadastroForm(forms.Form):
             }
         )
     )
-     
+    # Não funciona
+    # def clean_senha_2(self):
+    #     senha_1 = self.cleaned_data.get('senha1')
+    #     senha_2 = self.cleaned_data.get('senha2')
+    #     if senha_1 and senha_2:
+            
+    #         print(f'Senha1:{senha_1}\nSenha2:{senha_2}')
+            
+    #         if senha_1 != senha_2:
+    #             raise forms.ValidationError('As senhas não são iguais')
+    #         else:
+    #             return senha_2
+    
+    def clean_nome_cadastro(self):
+        nome = self.cleaned_data.get('nome_cadastro')
+
+        if nome:
+            nome = nome.strip()
+
+            if " " in nome:
+                raise forms.ValidationError("Nome de usuario não permitido")
+            else:
+                return nome
+                  

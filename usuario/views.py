@@ -39,11 +39,11 @@ def cadastro(request):
                 messages.error(request, 'Senhas não são iguais')
                 return redirect('cadastro')                
             else:
-                nome = form.cleaned_data['nome']
+                nome = form.cleaned_data['nome_cadastro']
                 email = form.cleaned_data['email']
                 senha = form.cleaned_data['senha1']
             
-            nome = form['nome'].value()
+            nome = form['nome_cadastro'].value()
             email = form['email'].value()        
             senha = form['senha1'].value()
 
