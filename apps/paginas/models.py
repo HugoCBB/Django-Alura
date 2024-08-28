@@ -15,7 +15,7 @@ class Fotografia(models.Model):
     descricao = models.CharField(max_length=250)
     foto = models.ImageField(upload_to="fotos/%Y/%m/%d/", blank=True)
     categoria = models.ForeignKey(Categoria, on_delete= models.CASCADE)
-    publicada = models.BooleanField(default=False)
+    publicada = models.BooleanField(default=True)
     usuario = models.ForeignKey(
         to=User,
         on_delete=models.SET_NULL,
