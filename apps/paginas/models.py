@@ -10,11 +10,19 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nome
 class Fotografia(models.Model):
+    OPCOES_CATEGORIA = [
+        ("NEBULOSA","Nebulosa"),
+        ("ESTRELA","Estrela"),
+        ("GALÁXIA","Galáxia"),
+        ("PLANETA","Planeta"),
+    ]
+
     data = models.DateField(default=datetime.now, blank=False)
     nome = models.CharField(max_length=100)
     descricao = models.CharField(max_length=250)
     foto = models.ImageField(upload_to="fotos/%Y/%m/%d/", blank=True)
-    categoria = models.ForeignKey(Categoria, on_delete= models.CASCADE)
+    # categoria = models.ForeignKey(Categoria, on_delete= models.CASCADE)
+    categoria = models.CharField(max_length=100, choices=OPCOES_CATEGORIA, default='')
     publicada = models.BooleanField(default=True)
     usuario = models.ForeignKey(
         to=User,
